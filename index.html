@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mourtalla Diop — Ingénieur IoT, IA &amp; Cybersécurité</title>
+<meta name="description" content="Portfolio de Mourtalla Diop, futur ingénieur logiciel & systèmes d'information — IoT, IA, cybersécurité, réseaux. Disponible pour un CDI dès septembre 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0E1A;
+    --surface:#141B2E;
+    --surface-2:#1B2338;
+    --border:#232C42;
+    --text:#E8ECF4;
+    --muted:#8A96B5;
+    --teal:#2DD4BF;
+    --teal-dim:rgba(45,212,191,0.14);
+    --amber:#F5A524;
+    --amber-dim:rgba(245,165,36,0.14);
+    --violet:#8B7CF6;
+    --violet-dim:rgba(139,124,246,0.14);
+    --font-head:'Space Grotesk', sans-serif;
+    --font-body:'IBM Plex Sans', sans-serif;
+    --font-mono:'IBM Plex Mono', monospace;
+    --maxw:1120px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--font-body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--teal);color:var(--bg);}
+
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;}
+  img{max-width:100%;display:block;}
+  section{position:relative;}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;}
+
+  /* ---------- Scrollbar ---------- */
+  ::-webkit-scrollbar{width:10px;}
+  ::-webkit-scrollbar-track{background:var(--bg);}
+  ::-webkit-scrollbar-thumb{background:var(--surface-2);border-radius:6px;}
+  ::-webkit-scrollbar-thumb:hover{background:var(--teal);}
+
+  /* ---------- Nav ---------- */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 32px;
+    background:rgba(10,14,26,0.72);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s ease, background .3s ease;
+  }
+  .nav.scrolled{border-bottom-color:var(--border);}
+  .nav-logo{
+    font-family:var(--font-mono);
+    font-size:15px;font-weight:600;
+    color:var(--text);
+    display:flex;align-items:center;gap:8px;
+  }
+  .nav-logo .dot{width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 8px var(--teal);animation:pulse-dot 2.4s ease-in-out infinite;}
+  .nav-links{display:flex;gap:8px;align-items:center;}
+  .nav-links a{
+    font-family:var(--font-mono);
+    font-size:12.5px;letter-spacing:.03em;
+    color:var(--muted);
+    padding:8px 14px;border-radius:6px;
+    transition:color .2s ease, background .2s ease;
+  }
+  .nav-links a:hover{color:var(--text);background:var(--surface);}
+  .nav-links a.active{color:var(--teal);}
+  .nav-toggle{display:none;background:none;border:none;color:var(--text);font-size:24px;cursor:pointer;}
+
+  @media (max-width:860px){
+    .nav-links{
+      position:fixed;top:64px;right:0;left:0;
+      flex-direction:column;align-items:stretch;
+      background:var(--surface);
+      border-bottom:1px solid var(--border);
+      padding:12px;gap:2px;
+      transform:translateY(-120%);
+      transition:transform .3s ease;
+    }
+    .nav-links.open{transform:translateY(0);}
+    .nav-links a{padding:12px 16px;}
+    .nav-toggle{display:block;}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex;align-items:center;
+    position:relative;
+    padding-top:90px;
+    overflow:hidden;
+  }
+  #hero-canvas{
+    position:absolute;inset:0;
+    width:100%;height:100%;
+    z-index:0;
+    opacity:.85;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;inset:0;
+    background:radial-gradient(ellipse at 30% 30%, rgba(10,14,26,0) 0%, var(--bg) 78%);
+    pointer-events:none;
+    z-index:1;
+  }
+  .hero-content{position:relative;z-index:2;max-width:760px;}
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--font-mono);font-size:12.5px;
+    color:var(--amber);
+    background:var(--amber-dim);
+    border:1px solid rgba(245,165,36,0.35);
+    padding:7px 14px;border-radius:100px;
+    margin-bottom:28px;
+    opacity:0;animation:fade-up .7s ease forwards .1s;
+  }
+  .badge .dot{width:7px;height:7px;border-radius:50%;background:var(--amber);box-shadow:0 0 8px var(--amber);animation:pulse-dot 2s ease-in-out infinite;}
+  .hero h1{
+    font-family:var(--font-head);
+    font-size:clamp(2.2rem, 5.2vw, 3.6rem);
+    font-weight:700;
+    line-height:1.15;
+    letter-spacing:-.02em;
+    margin-bottom:22px;
+    opacity:0;animation:fade-up .7s ease forwards .22s;
+  }
+  .hero h1 .hl-teal{color:var(--teal);}
+  .hero h1 .hl-amber{color:var(--amber);}
+  .hero h1 .hl-violet{color:var(--violet);}
+  .hero-role{
+    font-family:var(--font-mono);
+    font-size:clamp(.95rem, 1.6vw, 1.15rem);
+    color:var(--muted);
+    margin-bottom:18px;
+    display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;
+    opacity:0;animation:fade-up .7s ease forwards .34s;
+  }
+  .hero-role .cycle{
+    color:var(--text);font-weight:600;
+    border-bottom:2px solid var(--teal);
+    padding-bottom:2px;
+    min-width:9ch;
+    display:inline-block;
+  }
+  .hero p.lead{
+    font-size:1.05rem;
+    color:var(--muted);
+    max-width:600px;
+    margin-bottom:36px;
+    opacity:0;animation:fade-up .7s ease forwards .46s;
+  }
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:fade-up .7s ease forwards .58s;}
+  .btn{
+    font-family:var(--font-mono);
+    font-size:13.5px;font-weight:500;
+    padding:13px 24px;border-radius:8px;
+    display:inline-flex;align-items:center;gap:8px;
+    transition:transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+    cursor:pointer;border:none;
+  }
+  .btn-primary{background:var(--amber);color:#0A0E1A;font-weight:600;}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,165,36,0.28);}
+  .btn-outline{background:transparent;border:1px solid var(--border);color:var(--text);}
+  .btn-outline:hover{border-color:var(--teal);color:var(--teal);transform:translateY(-2px);}
+
+  @keyframes fade-up{
+    from{opacity:0;transform:translateY(16px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+  @keyframes pulse-dot{
+    0%,100%{opacity:1;}
+    50%{opacity:.35;}
+  }
+
+  .scroll-cue{
+    position:absolute;bottom:36px;left:32px;z-index:2;
+    font-family:var(--font-mono);font-size:11px;color:var(--muted);
+    display:flex;align-items:center;gap:10px;
+    opacity:0;animation:fade-up .7s ease forwards .8s;
+  }
+  .scroll-cue .line{width:28px;height:1px;background:var(--muted);position:relative;overflow:hidden;}
+  .scroll-cue .line::after{
+    content:"";position:absolute;left:-100%;top:0;bottom:0;width:100%;
+    background:var(--teal);
+    animation:scan 2.2s linear infinite;
+  }
+  @keyframes scan{ to{left:100%;} }
+
+  /* ---------- Section scaffolding ---------- */
+  .section{padding:120px 0;border-top:1px solid var(--border);}
+  .section-tag{
+    font-family:var(--font-mono);
+    font-size:12.5px;color:var(--teal);
+    letter-spacing:.05em;
+    display:flex;align-items:center;gap:10px;
+    margin-bottom:18px;
+  }
+  .section-tag::before{content:"";width:22px;height:1px;background:var(--teal);}
+  .section-title{
+    font-family:var(--font-head);
+    font-size:clamp(1.7rem, 3.4vw, 2.4rem);
+    font-weight:600;
+    margin-bottom:20px;
+    letter-spacing:-.01em;
+  }
+  .section-intro{color:var(--muted);max-width:640px;font-size:1rem;margin-bottom:56px;}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.is-visible{opacity:1;transform:translateY(0);}
+
+  /* ---------- Profil ---------- */
+  .profil-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:48px;align-items:start;}
+  .profil-text p{color:var(--muted);margin-bottom:18px;font-size:1.02rem;}
+  .profil-text strong{color:var(--text);font-weight:600;}
+  .stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .stat-card{
+    background:var(--surface);border:1px solid var(--border);
+    border-radius:12px;padding:22px 20px;
+    transition:border-color .25s ease, transform .25s ease;
+  }
+  .stat-card:hover{border-color:var(--teal);transform:translateY(-3px);}
+  .stat-num{font-family:var(--font-head);font-size:1.9rem;font-weight:700;color:var(--teal);margin-bottom:4px;}
+  .stat-label{font-size:.83rem;color:var(--muted);}
+
+  .lang-row{margin-top:36px;}
+  .lang-item{display:flex;align-items:center;gap:14px;margin-bottom:14px;font-family:var(--font-mono);font-size:13px;}
+  .lang-name{width:90px;color:var(--text);flex-shrink:0;}
+  .lang-bars{display:flex;gap:4px;}
+  .lang-bars span{width:16px;height:7px;border-radius:2px;background:var(--surface-2);}
+  .lang-bars span.on{background:var(--violet);}
+  .lang-level{color:var(--muted);font-size:11.5px;margin-left:auto;}
+
+  @media (max-width:860px){
+    .profil-grid{grid-template-columns:1fr;}
+  }
+
+  /* ---------- Competences ---------- */
+  .skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+  .skill-card{
+    background:var(--surface);border:1px solid var(--border);border-radius:14px;
+    padding:28px;
+    position:relative;overflow:hidden;
+    transition:border-color .25s ease, transform .25s ease;
+  }
+  .skill-card:hover{transform:translateY(-4px);}
+  .skill-card::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:3px;
+    background:var(--accent, var(--teal));
+  }
+  .skill-card[data-accent="teal"]{--accent:var(--teal);}
+  .skill-card[data-accent="amber"]{--accent:var(--amber);}
+  .skill-card[data-accent="violet"]{--accent:var(--violet);}
+  .skill-card[data-accent="teal"]:hover{border-color:var(--teal);}
+  .skill-card[data-accent="amber"]:hover{border-color:var(--amber);}
+  .skill-card[data-accent="violet"]:hover{border-color:var(--violet);}
+  .skill-card h3{
+    font-family:var(--font-head);font-size:1.15rem;font-weight:600;margin-bottom:6px;
+  }
+  .skill-card .cat-sub{color:var(--muted);font-size:.85rem;margin-bottom:18px;}
+  .tag-list{display:flex;flex-wrap:wrap;gap:8px;}
+  .tag{
+    font-family:var(--font-mono);font-size:12px;
+    padding:6px 12px;border-radius:100px;
+    background:var(--surface-2);color:var(--text);
+    border:1px solid var(--border);
+  }
+  @media (max-width:860px){ .skills-grid{grid-template-columns:1fr;} }
+
+  /* ---------- Experience / timeline ---------- */
+  .timeline{position:relative;padding-left:32px;}
+  .timeline::before{
+    content:"";position:absolute;left:5px;top:6px;bottom:6px;width:1px;
+    background:linear-gradient(var(--teal), var(--border));
+  }
+  .tl-item{position:relative;padding-bottom:56px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:"";position:absolute;left:-32px;top:4px;width:11px;height:11px;border-radius:50%;
+    background:var(--bg);border:2px solid var(--teal);
+  }
+  .tl-meta{font-family:var(--font-mono);font-size:12px;color:var(--amber);margin-bottom:8px;display:block;}
+  .tl-item h3{font-family:var(--font-head);font-size:1.3rem;font-weight:600;margin-bottom:4px;}
+  .tl-org{color:var(--muted);font-size:.92rem;margin-bottom:16px;display:block;}
+  .tl-item p{color:var(--muted);margin-bottom:10px;max-width:680px;}
+  .tl-item p strong{color:var(--text);font-weight:600;}
+  .tl-tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+
+  /* ---------- Projects ---------- */
+  .projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .project-card{
+    background:var(--surface);border:1px solid var(--border);border-radius:14px;
+    padding:30px;display:flex;flex-direction:column;gap:14px;
+    transition:border-color .25s ease, transform .25s ease;
+  }
+  .project-card:hover{transform:translateY(-4px);border-color:var(--violet);}
+  .project-num{font-family:var(--font-mono);font-size:12px;color:var(--violet);}
+  .project-card h3{font-family:var(--font-head);font-size:1.2rem;font-weight:600;}
+  .project-block-label{font-family:var(--font-mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:6px;}
+  .project-card p{color:var(--muted);font-size:.94rem;}
+  .project-card p strong{color:var(--text);font-weight:600;}
+  @media (max-width:860px){ .projects-grid{grid-template-columns:1fr;} }
+
+  .project-featured{
+    grid-column:1 / -1;
+    background:linear-gradient(135deg, var(--surface), var(--surface-2));
+    border-color:rgba(139,124,246,0.4);
+    position:relative;
+  }
+  .project-featured::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:3px;
+    background:linear-gradient(90deg, var(--violet), var(--teal), var(--amber));
+  }
+  .project-featured:hover{border-color:var(--violet);}
+  .featured-flag{
+    align-self:flex-start;
+    font-family:var(--font-mono);font-size:11px;letter-spacing:.04em;
+    color:var(--violet);background:var(--violet-dim);
+    border:1px solid rgba(139,124,246,0.35);
+    padding:5px 12px;border-radius:100px;
+  }
+  .mini-stats{display:flex;flex-wrap:wrap;gap:28px;margin:6px 0 4px;}
+  .mini-stat{
+    display:flex;flex-direction:column;
+    font-family:var(--font-mono);font-size:12px;color:var(--muted);
+  }
+  .mini-stat span{
+    font-family:var(--font-head);font-size:1.5rem;font-weight:700;color:var(--text);
+  }
+
+  /* ---------- Formation ---------- */
+  .formation-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+  .formation-card{
+    background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;
+    transition:border-color .25s ease;
+  }
+  .formation-card:hover{border-color:var(--teal);}
+  .formation-card .tl-meta{margin-bottom:6px;}
+  .formation-card h3{font-family:var(--font-head);font-size:1.05rem;font-weight:600;margin-bottom:4px;}
+  .formation-card .tl-org{margin-bottom:12px;}
+  .formation-card ul{display:flex;flex-wrap:wrap;gap:6px;}
+  .formation-card li{
+    font-family:var(--font-mono);font-size:11.5px;color:var(--muted);
+    background:var(--surface-2);padding:5px 10px;border-radius:6px;
+  }
+  @media (max-width:860px){ .formation-grid{grid-template-columns:1fr;} }
+
+  /* ---------- Contact ---------- */
+  .contact-section{padding-bottom:60px;}
+  .contact-box{
+    background:linear-gradient(135deg, var(--surface), var(--surface-2));
+    border:1px solid var(--border);border-radius:20px;
+    padding:56px;text-align:center;
+    position:relative;overflow:hidden;
+  }
+  .contact-box::before{
+    content:"";position:absolute;width:340px;height:340px;border-radius:50%;
+    background:radial-gradient(circle, var(--teal-dim), transparent 70%);
+    top:-140px;right:-100px;
+  }
+  .contact-box h2{
+    font-family:var(--font-head);font-size:clamp(1.6rem,3.4vw,2.3rem);font-weight:700;margin-bottom:16px;position:relative;
+  }
+  .contact-box p{color:var(--muted);max-width:520px;margin:0 auto 32px;position:relative;}
+  .contact-links{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;position:relative;}
+  .contact-links a{
+    display:flex;align-items:center;gap:10px;
+    font-family:var(--font-mono);font-size:13px;
+    padding:13px 20px;border-radius:8px;
+    background:var(--surface);border:1px solid var(--border);
+    transition:all .2s ease;
+  }
+  .contact-links a:hover{border-color:var(--teal);color:var(--teal);transform:translateY(-2px);}
+
+  footer{
+    text-align:center;padding:32px;color:var(--muted);
+    font-family:var(--font-mono);font-size:12px;border-top:1px solid var(--border);
+  }
+
+  @media (max-width:600px){
+    .wrap{padding:0 20px;}
+    .section{padding:80px 0;}
+    .contact-box{padding:36px 24px;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-logo"><span class="dot"></span>MD_</div>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+  <div class="nav-links" id="navLinks">
+    <a href="#profil">Profil</a>
+    <a href="#competences">Compétences</a>
+    <a href="#experiences">Expériences</a>
+    <a href="#projets">Projets</a>
+    <a href="#formation">Formation</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="wrap hero-content">
+    <div class="badge"><span class="dot"></span>DISPONIBLE POUR UN CDI — SEPTEMBRE 2026</div>
+    <h1>Chaque capteur raconte une histoire.<br>Je conçois les systèmes qui l'<span class="hl-teal">écoutent</span>, la <span class="hl-amber">sécurisent</span>, et la mettent en <span class="hl-violet">réseau</span>.</h1>
+    <div class="hero-role">
+      <span>&gt; futur_ingenieur --domaine=</span><span class="cycle" id="cycleWord">IoT</span>
+    </div>
+    <p class="lead">Mourtalla Diop — étudiant ingénieur en systèmes d'information pour la mobilité intelligente, entre l'INSA Hauts-de-France, l'ESAIP Angers et l'Université de Žilina (Slovaquie). Je relie capteurs, infrastructures réseau et intelligence artificielle pour construire des systèmes fiables et sûrs.</p>
+    <div class="hero-ctas">
+      <a href="#projets" class="btn btn-primary">Voir mes projets →</a>
+      <a href="#contact" class="btn btn-outline">Me contacter</a>
+    </div>
+  </div>
+  <div class="scroll-cue"><span class="line"></span>SCROLL</div>
+</section>
+
+<!-- ===================== PROFIL ===================== -->
+<section class="section" id="profil">
+  <div class="wrap">
+    <div class="section-tag reveal">Profil</div>
+    <h2 class="section-title reveal">Du capteur au système, une approche de bout en bout</h2>
+    <div class="profil-grid">
+      <div class="profil-text reveal">
+        <p>Formé en <strong>génie logiciel, réseaux et systèmes d'information</strong>, je me spécialise aujourd'hui dans les <strong>technologies pour la mobilité intelligente et durable</strong> à l'INSA Hauts-de-France, après un parcours qui m'a mené de Dakar à Angers puis à Žilina en Slovaquie dans le cadre d'un programme Erasmus.</p>
+        <p>Ce qui m'anime : faire dialoguer des mondes qu'on sépare trop souvent — le <strong>matériel</strong> (capteurs, IoT, edge computing), le <strong>logiciel</strong> (développement Android, web, data) et la <strong>sécurité</strong> des infrastructures qui les relient. Mes projets académiques et mon expérience en laboratoire de recherche CNRS m'ont appris à concevoir des systèmes pensés pour être supervisés, sécurisés et maintenus dans la durée — pas seulement pour fonctionner en démo.</p>
+        <p>Aujourd'hui, je recherche un <strong>CDI à partir de septembre 2026</strong> dans les domaines de l'IoT, des réseaux et de la cybersécurité, en France ou à l'international.</p>
+        <div class="lang-row">
+          <div class="lang-item">
+            <span class="lang-name">Français</span>
+            <span class="lang-bars"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></span>
+            <span class="lang-level">Expert</span>
+          </div>
+          <div class="lang-item">
+            <span class="lang-name">Anglais</span>
+            <span class="lang-bars"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></span>
+            <span class="lang-level">B2</span>
+          </div>
+          <div class="lang-item">
+            <span class="lang-name">Espagnol</span>
+            <span class="lang-bars"><span class="on"></span><span class="on"></span><span></span><span></span><span></span></span>
+            <span class="lang-level">Intermédiaire</span>
+          </div>
+        </div>
+      </div>
+      <div class="stats-grid reveal">
+        <div class="stat-card">
+          <div class="stat-num" data-count="3">0</div>
+          <div class="stat-label">Pays d'études — Sénégal, Slovaquie, France</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" data-count="5">0</div>
+          <div class="stat-label">Projets menés de bout en bout — académiques &amp; recherche</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" data-count="25" data-suffix="+">0</div>
+          <div class="stat-label">Technologies &amp; outils maîtrisés</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">09/26</div>
+          <div class="stat-label">Disponibilité pour un CDI</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== COMPETENCES ===================== -->
+<section class="section" id="competences">
+  <div class="wrap">
+    <div class="section-tag reveal">Compétences</div>
+    <h2 class="section-title reveal">Compétences, groupées par domaine</h2>
+    <p class="section-intro reveal">Quatre familles de compétences qui se croisent en permanence dans mes projets : l'intelligence artificielle et la modélisation, l'IoT et l'edge computing, les réseaux et la sécurité, et le développement logiciel.</p>
+
+    <div class="skills-grid">
+      <div class="skill-card reveal" data-accent="violet">
+        <h3>IA, Data &amp; Modélisation</h3>
+        <p class="cat-sub">Simuler, optimiser, analyser</p>
+        <div class="tag-list">
+          <span class="tag">Machine Learning</span>
+          <span class="tag">R / RStudio</span>
+          <span class="tag">Data Engineering</span>
+          <span class="tag">Modélisation multi-agents</span>
+          <span class="tag">NetLogo</span>
+          <span class="tag">Vissim</span>
+          <span class="tag">IBM ILOG CPLEX</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal" data-accent="amber">
+        <h3>IoT, Edge &amp; Mobile</h3>
+        <p class="cat-sub">Du capteur à l'application</p>
+        <div class="tag-list">
+          <span class="tag">NVIDIA Jetson</span>
+          <span class="tag">Raspberry Pi</span>
+          <span class="tag">C++</span>
+          <span class="tag">Flutter</span>
+          <span class="tag">Node-RED</span>
+          <span class="tag">Jeedom</span>
+          <span class="tag">Android</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal" data-accent="teal">
+        <h3>Réseaux, Sécurité &amp; DevOps</h3>
+        <p class="cat-sub">Concevoir et protéger l'infrastructure</p>
+        <div class="tag-list">
+          <span class="tag">TCP/IP</span>
+          <span class="tag">Cisco Packet Tracer</span>
+          <span class="tag">Cybersécurité</span>
+          <span class="tag">Cryptographie</span>
+          <span class="tag">Docker</span>
+          <span class="tag">Grafana</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal" data-accent="teal">
+        <h3>Développement &amp; Données</h3>
+        <p class="cat-sub">Construire et fiabiliser</p>
+        <div class="tag-list">
+          <span class="tag">Java</span>
+          <span class="tag">Python</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">PHP</span>
+          <span class="tag">HTML/CSS</span>
+          <span class="tag">SQL</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">Bruno (API testing)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EXPERIENCES ===================== -->
+<section class="section" id="experiences">
+  <div class="wrap">
+    <div class="section-tag reveal">Expériences</div>
+    <h2 class="section-title reveal">Expériences professionnelles</h2>
+    <p class="section-intro reveal">De la salle de classe au laboratoire de recherche : deux expériences qui m'ont appris à transmettre et à faire tenir un système dans la durée.</p>
+
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <span class="tl-meta">MARS 2026 — AOÛT 2026</span>
+        <h3>Infrastructure Smart Home : inventaire, supervision &amp; sécurité</h3>
+        <span class="tl-org">LAMIH UMR CNRS 8201 · Valenciennes</span>
+        <p><strong>Contexte :</strong> le laboratoire LAMIH (CNRS) développe des scénarios réels d'habitat intelligent et avait besoin de fiabiliser le parc d'équipements IoT utilisé par ses chercheurs, sans visibilité centralisée sur son état.</p>
+        <p><strong>Mon rôle :</strong> j'ai réalisé l'inventaire complet des équipements du laboratoire, puis mis en place une solution de supervision et de monitoring permettant de suivre l'état des capteurs et dispositifs connectés en temps réel. J'ai également configuré et intégré de nouveaux capteurs et dispositifs IoT directement dans des scénarios d'expérimentation d'habitat intelligent.</p>
+        <p><strong>Contribution phare :</strong> en parallèle, j'ai contribué à la conception d'un <strong>portail web d'apprentissage fédéré</strong> permettant d'entraîner des modèles d'IA de détection d'anomalies (intrusion, capteur défaillant, comportement anormal) directement sur les hubs IoT du laboratoire, sans jamais centraliser leurs données — détail complet dans la section Projets ci-dessous.</p>
+        <p><strong>Résultat :</strong> une infrastructure de recherche mieux inventoriée, supervisée et pérennisée, complétée par un portail d'apprentissage fédéré opérationnel sur 4 hubs — donnant aux équipes du laboratoire une visibilité fiable sur leurs équipements et un nouvel outil pour leurs expérimentations.</p>
+        <div class="tl-tools">
+          <span class="tag">IoT</span><span class="tag">Supervision & Monitoring</span><span class="tag">Grafana</span><span class="tag">Habitat intelligent</span><span class="tag">Apprentissage fédéré</span>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <span class="tl-meta">JANVIER 2020 — JUILLET 2021</span>
+        <h3>Professeur</h3>
+        <span class="tl-org">Lycée de Mbacké · Touba, Sénégal</span>
+        <p><strong>Contexte :</strong> accompagner des lycéens en physique, mathématiques et informatique en dehors du cadre scolaire classique, avec des besoins très hétérogènes d'un élève à l'autre.</p>
+        <p><strong>Mon rôle :</strong> conception et animation de séances de révision et d'exercices personnalisés, adaptés au niveau et au rythme de chaque élève.</p>
+        <p><strong>Résultat :</strong> une expérience fondatrice de pédagogie et de communication technique — la même rigueur que j'applique aujourd'hui à expliquer un système complexe à un public non-expert.</p>
+        <div class="tl-tools">
+          <span class="tag">Pédagogie</span><span class="tag">Physique</span><span class="tag">Mathématiques</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROJETS ===================== -->
+<section class="section" id="projets">
+  <div class="wrap">
+    <div class="section-tag reveal">Projets</div>
+    <h2 class="section-title reveal">Projets académiques &amp; de recherche</h2>
+    <p class="section-intro reveal">Cinq projets, cinq problèmes concrets : apprentissage fédéré pour la détection d'anomalies IoT, circulation urbaine, capacité aéroportuaire, suivi d'activité physique et infrastructure réseau de campus.</p>
+
+    <div class="projects-grid">
+
+      <div class="project-card project-featured reveal">
+        <span class="featured-flag">Projet phare — LAMIH 2026</span>
+        <span class="project-num">01 — Recherche &amp; IA distribuée</span>
+        <h3>Portail d'apprentissage fédéré pour la détection d'anomalies IoT</h3>
+        <p><strong>Problème :</strong> détecter des anomalies — intrusion dans une pièce, capteur défaillant, comportement anormal dans un bâtiment — sur un parc d'équipements IoT distribués, sans jamais centraliser les données sensibles captées par ces appareils.</p>
+        <p><strong>Ma contribution :</strong> contribution à la conception d'un portail web d'apprentissage fédéré : chaque "hub" physique (Raspberry Pi, cartes NVIDIA Jetson, caméra) entraîne localement un modèle de détection d'anomalie sur ses propres données ; seul le savoir appris (les poids du modèle) est ensuite mis en commun — les données brutes ne quittent jamais l'appareil. Le portail permet à un chercheur d'importer ses données, choisir un modèle, sélectionner les hubs participants et obtenir des résultats lisibles, sans configurer lui-même l'infrastructure technique sous-jacente.</p>
+        <p><strong>Résultat :</strong> 4 hubs connectés en production (Jetson03, Jetson02, raspberry05, camera) et plus de 20 datasets disponibles sur le portail. La préparation des données, le lancement des entraînements et la visualisation des résultats sont automatisés — un vrai gain de temps pour les chercheurs, qui peuvent comparer modèles et configurations de hubs sans développer eux-mêmes une application d'apprentissage fédéré.</p>
+        <div class="mini-stats">
+          <div class="mini-stat"><span>4</span>hubs connectés</div>
+          <div class="mini-stat"><span>20+</span>datasets</div>
+          <div class="mini-stat"><span>0</span>donnée brute partagée</div>
+        </div>
+        <div class="tag-list">
+          <span class="tag">Apprentissage fédéré</span><span class="tag">Détection d'anomalies</span><span class="tag">Edge AI</span><span class="tag">NVIDIA Jetson</span><span class="tag">Raspberry Pi</span><span class="tag">Privacy by design</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <span class="project-num">02 — Modélisation multi-agents</span>
+        <h3>Flux urbains &amp; impact environnemental</h3>
+        <p><strong>Problème :</strong> le <em>cruising</em> — le temps passé par les conducteurs à chercher une place de stationnement — augmente la circulation inutile et la pollution en zone urbaine.</p>
+        <p><strong>Ma contribution :</strong> conception d'un modèle multi-agents simulant le comportement des conducteurs et la disponibilité des places de parking en temps réel.</p>
+        <p><strong>Résultat :</strong> mesure de l'efficacité d'une application de localisation de places et de signalement de départ sur la réduction du cruising, avec production de métriques de pollution destinées à un décideur public (Mairie).</p>
+        <div class="tag-list">
+          <span class="tag">NetLogo</span><span class="tag">Modélisation multi-agents</span><span class="tag">Analyse de performance</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <span class="project-num">03 — Recherche opérationnelle</span>
+        <h3>Problème de l'atterrissage des avions (ALP)</h3>
+        <p><strong>Problème :</strong> optimiser l'ordre et les créneaux d'atterrissage des avions pour un aéroport à capacité limitée, tout en minimisant les retards.</p>
+        <p><strong>Ma contribution :</strong> développement de modèles d'optimisation en programmation mathématique, résolus via le solveur CPLEX.</p>
+        <p><strong>Résultat :</strong> des modèles permettant d'améliorer la capacité effective de l'aéroport et de réduire les retards cumulés.</p>
+        <div class="tag-list">
+          <span class="tag">IBM ILOG CPLEX</span><span class="tag">Programmation mathématique</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <span class="project-num">04 — Application mobile</span>
+        <h3>Virtual Gym — application Android</h3>
+        <p><strong>Problème :</strong> permettre à un utilisateur de suivre et comprendre son activité physique directement depuis son smartphone, sans matériel dédié.</p>
+        <p><strong>Ma contribution :</strong> développement d'une fonctionnalité Android exploitant le GPS, l'accéléromètre et le gyroscope du téléphone pour capter et analyser les mouvements, avec un travail UI/UX sur la restitution des données.</p>
+        <p><strong>Résultat :</strong> une fonctionnalité de suivi d'activité physique fonctionnelle, entièrement basée sur les capteurs natifs du téléphone.</p>
+        <div class="tag-list">
+          <span class="tag">Android</span><span class="tag">UI/UX</span><span class="tag">Capteurs mobiles</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <span class="project-num">05 — Réseaux</span>
+        <h3>Campuking — réseau inter-bâtiments</h3>
+        <p><strong>Problème :</strong> concevoir une architecture réseau capable de relier plusieurs bâtiments d'un campus de façon fiable et évolutive.</p>
+        <p><strong>Ma contribution :</strong> définition du schéma d'adressage IP complet et configuration du routage dynamique entre les routeurs inter-bâtiments.</p>
+        <p><strong>Résultat :</strong> une architecture réseau fonctionnelle, simulée et validée sous Cisco Packet Tracer, appliquant les principes TCP/IP à un cas de campus réel.</p>
+        <div class="tag-list">
+          <span class="tag">Cisco Packet Tracer</span><span class="tag">TCP/IP</span><span class="tag">Routage dynamique</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FORMATION ===================== -->
+<section class="section" id="formation">
+  <div class="wrap">
+    <div class="section-tag reveal">Formation</div>
+    <h2 class="section-title reveal">Diplômes &amp; formations</h2>
+    <p class="section-intro reveal">Un parcours international, de Dakar à Valenciennes en passant par Angers et Žilina.</p>
+
+    <div class="formation-grid">
+      <div class="formation-card reveal">
+        <span class="tl-meta">DEPUIS SEPT. 2024</span>
+        <h3>Master — Technologie de l'information pour la mobilité intelligente et durable</h3>
+        <span class="tl-org">INSA Hauts-de-France · Valenciennes</span>
+        <ul>
+          <li>Mobilité &amp; durabilité</li>
+          <li>Informatique &amp; réseaux</li>
+          <li>Données &amp; IA</li>
+          <li>Modélisation &amp; optimisation</li>
+        </ul>
+      </div>
+
+      <div class="formation-card reveal">
+        <span class="tl-meta">FÉV. — JUIL. 2024</span>
+        <h3>Erasmus — Génie logiciel &amp; réseaux</h3>
+        <span class="tl-org">Université de Žilina · Slovaquie</span>
+        <ul>
+          <li>Génie logiciel</li>
+          <li>Apps internet &amp; intranet</li>
+          <li>Bases de données</li>
+          <li>Géodonnées ouvertes</li>
+        </ul>
+      </div>
+
+      <div class="formation-card reveal">
+        <span class="tl-meta">SEPT. 2023 — JUIL. 2024</span>
+        <h3>3e année cycle ingénieur — Informatique &amp; réseau</h3>
+        <span class="tl-org">ESAIP · Angers</span>
+        <ul>
+          <li>Développement &amp; analyse de données</li>
+          <li>Systèmes &amp; réseaux</li>
+          <li>Entreprise &amp; management de projet</li>
+        </ul>
+      </div>
+
+      <div class="formation-card reveal">
+        <span class="tl-meta">OCT. 2021 — JUIL. 2023</span>
+        <h3>Classes préparatoires aux grandes écoles</h3>
+        <span class="tl-org">Mariste Post-Bac · Dakar, Sénégal</span>
+        <ul>
+          <li>Physique</li>
+          <li>Mathématiques</li>
+          <li>Informatique</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section class="section contact-section" id="contact">
+  <div class="wrap">
+    <div class="section-tag reveal">Contact</div>
+    <div class="contact-box reveal">
+      <h2>Construisons le prochain système, ensemble.</h2>
+      <p>Disponible pour un poste en CDI dès septembre 2026, en France ou à l'international, dans l'IoT, les réseaux ou la cybersécurité.</p>
+      <div class="contact-links">
+        <a href="mailto:mourtalladiop92@gmail.com">✉ mourtalladiop92@gmail.com</a>
+        <a href="tel:+33766072841">☎ 07 66 07 28 41</a>
+        <a href="https://www.linkedin.com/in/mourtalla-diop-57a912194/" target="_blank" rel="noopener">in — @Mourtalla Diop</a>
+        <a href="#hero">📍 Valenciennes (59300), France</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Mourtalla Diop — Futur ingénieur logiciel &amp; systèmes d'information · IoT · IA · Cybersécurité · Réseaux
+</footer>
+
+<script>
+/* ---------- Nav scroll state + active link ---------- */
+const nav = document.getElementById('nav');
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+const sections = document.querySelectorAll('section[id]');
+const links = document.querySelectorAll('.nav-links a');
+
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+}, {passive:true});
+
+navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+links.forEach(l => l.addEventListener('click', () => navLinks.classList.remove('open')));
+
+const navObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.getAttribute('id');
+      links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+    }
+  });
+}, {rootMargin: '-45% 0px -50% 0px'});
+sections.forEach(s => navObserver.observe(s));
+
+/* ---------- Scroll reveal ---------- */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('is-visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, {threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+/* ---------- Animated counters ---------- */
+const counters = document.querySelectorAll('.stat-num[data-count]');
+const countObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = parseInt(el.getAttribute('data-count'), 10);
+      const suffix = el.getAttribute('data-suffix') || '';
+      let cur = 0;
+      const step = Math.max(1, Math.round(target / 40));
+      const tick = () => {
+        cur += step;
+        if (cur >= target) { el.textContent = target + suffix; return; }
+        el.textContent = cur + suffix;
+        requestAnimationFrame(tick);
+      };
+      tick();
+      countObserver.unobserve(el);
+    }
+  });
+}, {threshold:0.4});
+counters.forEach(c => countObserver.observe(c));
+
+/* ---------- Hero role word cycle ---------- */
+const words = ['IoT', 'Cybersécurité', 'Réseaux', 'IA'];
+const colors = ['var(--amber)', 'var(--teal)', 'var(--violet)', 'var(--teal)'];
+let wIdx = 0;
+const cycleEl = document.getElementById('cycleWord');
+setInterval(() => {
+  wIdx = (wIdx + 1) % words.length;
+  cycleEl.style.opacity = 0;
+  setTimeout(() => {
+    cycleEl.textContent = words[wIdx];
+    cycleEl.style.borderColor = colors[wIdx];
+    cycleEl.style.opacity = 1;
+  }, 250);
+}, 2400);
+cycleEl.style.transition = 'opacity .25s ease';
+
+/* ---------- Hero network canvas (signature element) ---------- */
+(function(){
+  const canvas = document.getElementById('hero-canvas');
+  const ctx = canvas.getContext('2d');
+  const hero = document.getElementById('hero');
+  let W, H, nodes = [], pulses = [];
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const palette = ['#2DD4BF', '#F5A524', '#8B7CF6'];
+
+  function resize(){
+    W = canvas.width = hero.offsetWidth;
+    H = canvas.height = hero.offsetHeight;
+    const count = Math.max(18, Math.min(46, Math.floor((W*H)/34000)));
+    nodes = Array.from({length: count}, () => ({
+      x: Math.random()*W,
+      y: Math.random()*H,
+      vx: (Math.random()-0.5)*0.25,
+      vy: (Math.random()-0.5)*0.25,
+      r: Math.random()*1.6 + 1.4,
+      c: palette[Math.floor(Math.random()*palette.length)]
+    }));
+  }
+
+  let mouse = {x:-9999, y:-9999};
+  hero.addEventListener('mousemove', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+  });
+  hero.addEventListener('mouseleave', () => { mouse.x=-9999; mouse.y=-9999; });
+
+  const maxDist = 150;
+
+  function spawnPulse(){
+    if(nodes.length < 2) return;
+    const a = nodes[Math.floor(Math.random()*nodes.length)];
+    let b = null, bestD = Infinity;
+    nodes.forEach(n => {
+      if(n===a) return;
+      const d = Math.hypot(n.x-a.x, n.y-a.y);
+      if(d < maxDist && d < bestD && Math.random() > 0.5){ bestD = d; b = n; }
+    });
+    if(b) pulses.push({a, b, t:0, c: a.c});
+  }
+
+  function step(){
+    ctx.clearRect(0,0,W,H);
+
+    nodes.forEach(n => {
+      n.x += n.vx; n.y += n.vy;
+      if(n.x < 0 || n.x > W) n.vx *= -1;
+      if(n.y < 0 || n.y > H) n.vy *= -1;
+
+      const dm = Math.hypot(n.x-mouse.x, n.y-mouse.y);
+      if(dm < 110){
+        const f = (110-dm)/110*0.6;
+        n.x += (n.x-mouse.x)/dm*f;
+        n.y += (n.y-mouse.y)/dm*f;
+      }
+    });
+
+    for(let i=0;i<nodes.length;i++){
+      for(let j=i+1;j<nodes.length;j++){
+        const a=nodes[i], b=nodes[j];
+        const d = Math.hypot(a.x-b.x, a.y-b.y);
+        if(d < maxDist){
+          ctx.strokeStyle = `rgba(138,150,181,${(1-d/maxDist)*0.22})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(a.x,a.y);
+          ctx.lineTo(b.x,b.y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    pulses.forEach(p => {
+      p.t += 0.02;
+      const x = p.a.x + (p.b.x-p.a.x)*p.t;
+      const y = p.a.y + (p.b.y-p.a.y)*p.t;
+      ctx.beginPath();
+      ctx.arc(x,y,2.4,0,Math.PI*2);
+      ctx.fillStyle = p.c;
+      ctx.shadowBlur = 8;
+      ctx.shadowColor = p.c;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    });
+    pulses = pulses.filter(p => p.t < 1);
+
+    nodes.forEach(n => {
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI*2);
+      ctx.fillStyle = n.c;
+      ctx.globalAlpha = 0.85;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+    });
+
+    if(!prefersReduced) requestAnimationFrame(step);
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+  if(!prefersReduced){
+    step();
+    setInterval(spawnPulse, 260);
+  } else {
+    step();
+  }
+})();
+</script>
+
+</body>
+</html>
