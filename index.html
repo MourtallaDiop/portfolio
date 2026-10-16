@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mourtalla Diop — Ingénieur IoT, IA &amp; Cybersécurité</title>
-<meta name="description" content="Portfolio de Mourtalla Diop, futur ingénieur logiciel & systèmes d'information — IoT, IA, cybersécurité, réseaux. Disponible pour un CDI dès septembre 2026.">
+<meta name="description" content="Portfolio de Mourtalla Diop, ingénieur logiciel & systèmes d'information — IoT, IA, cybersécurité, réseaux. Diplômé, disponible immédiatement pour un CDI.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -360,6 +360,40 @@
   }
   @media (max-width:860px){ .formation-grid{grid-template-columns:1fr;} }
 
+  /* ---------- Certifications ---------- */
+  .cert-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+  .cert-card{
+    background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:28px;
+    position:relative;overflow:hidden;
+    transition:border-color .25s ease, transform .25s ease;
+  }
+  .cert-card:hover{transform:translateY(-4px);}
+  .cert-card::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:3px;
+    background:var(--accent, var(--teal));
+  }
+  .cert-card[data-accent="teal"]{--accent:var(--teal);}
+  .cert-card[data-accent="violet"]{--accent:var(--violet);}
+  .cert-card[data-accent="teal"]:hover{border-color:var(--teal);}
+  .cert-card[data-accent="violet"]:hover{border-color:var(--violet);}
+  .cert-issuer{
+    display:flex;align-items:center;gap:8px;
+    font-family:var(--font-mono);font-size:11.5px;color:var(--muted);
+    margin-bottom:14px;
+  }
+  .cert-issuer .badge-dot{width:6px;height:6px;border-radius:50%;background:var(--accent, var(--teal));}
+  .cert-card h3{font-family:var(--font-head);font-size:1.1rem;font-weight:600;margin-bottom:4px;line-height:1.3;}
+  .cert-date{font-family:var(--font-mono);font-size:11.5px;color:var(--muted);display:block;margin-bottom:16px;}
+  .cert-card ul{display:flex;flex-direction:column;gap:8px;}
+  .cert-card li{
+    font-size:.86rem;color:var(--muted);
+    padding-left:16px;position:relative;
+  }
+  .cert-card li::before{
+    content:"—";position:absolute;left:0;color:var(--accent, var(--teal));
+  }
+  @media (max-width:860px){ .cert-grid{grid-template-columns:1fr;} }
+
   /* ---------- Contact ---------- */
   .contact-section{padding-bottom:60px;}
   .contact-box{
@@ -410,6 +444,7 @@
     <a href="#experiences">Expériences</a>
     <a href="#projets">Projets</a>
     <a href="#formation">Formation</a>
+    <a href="#certifications">Certifications</a>
     <a href="#contact">Contact</a>
   </div>
 </nav>
@@ -418,12 +453,12 @@
 <section class="hero" id="hero">
   <canvas id="hero-canvas"></canvas>
   <div class="wrap hero-content">
-    <div class="badge"><span class="dot"></span>DISPONIBLE POUR UN CDI — SEPTEMBRE 2026</div>
+    <div class="badge"><span class="dot"></span>DIPLÔMÉ · DISPONIBLE IMMÉDIATEMENT POUR UN CDI</div>
     <h1>Chaque capteur raconte une histoire.<br>Je conçois les systèmes qui l'<span class="hl-teal">écoutent</span>, la <span class="hl-amber">sécurisent</span>, et la mettent en <span class="hl-violet">réseau</span>.</h1>
     <div class="hero-role">
-      <span>&gt; futur_ingenieur --domaine=</span><span class="cycle" id="cycleWord">IoT</span>
+      <span>&gt; ingenieur --domaine=</span><span class="cycle" id="cycleWord">IoT</span>
     </div>
-    <p class="lead">Mourtalla Diop — étudiant ingénieur en systèmes d'information pour la mobilité intelligente, entre l'INSA Hauts-de-France, l'ESAIP Angers et l'Université de Žilina (Slovaquie). Je relie capteurs, infrastructures réseau et intelligence artificielle pour construire des systèmes fiables et sûrs.</p>
+    <p class="lead">Mourtalla Diop — jeune ingénieur diplômé en systèmes d'information pour la mobilité intelligente, formé entre l'INSA Hauts-de-France, l'ESAIP Angers et l'Université de Žilina (Slovaquie). Je relie capteurs, infrastructures réseau et intelligence artificielle pour construire des systèmes fiables et sûrs.</p>
     <div class="hero-ctas">
       <a href="#projets" class="btn btn-primary">Voir mes projets →</a>
       <a href="#contact" class="btn btn-outline">Me contacter</a>
@@ -439,9 +474,9 @@
     <h2 class="section-title reveal">Du capteur au système, une approche de bout en bout</h2>
     <div class="profil-grid">
       <div class="profil-text reveal">
-        <p>Formé en <strong>génie logiciel, réseaux et systèmes d'information</strong>, je me spécialise aujourd'hui dans les <strong>technologies pour la mobilité intelligente et durable</strong> à l'INSA Hauts-de-France, après un parcours qui m'a mené de Dakar à Angers puis à Žilina en Slovaquie dans le cadre d'un programme Erasmus.</p>
+        <p>Formé en <strong>génie logiciel, réseaux et systèmes d'information</strong>, j'ai obtenu mon Master en <strong>technologies pour la mobilité intelligente et durable</strong> à l'INSA Hauts-de-France, au terme d'un parcours qui m'a mené de Dakar à Angers puis à Žilina en Slovaquie dans le cadre d'un programme Erasmus.</p>
         <p>Ce qui m'anime : faire dialoguer des mondes qu'on sépare trop souvent — le <strong>matériel</strong> (capteurs, IoT, edge computing), le <strong>logiciel</strong> (développement Android, web, data) et la <strong>sécurité</strong> des infrastructures qui les relient. Mes projets académiques et mon expérience en laboratoire de recherche CNRS m'ont appris à concevoir des systèmes pensés pour être supervisés, sécurisés et maintenus dans la durée — pas seulement pour fonctionner en démo.</p>
-        <p>Aujourd'hui, je recherche un <strong>CDI à partir de septembre 2026</strong> dans les domaines de l'IoT, des réseaux et de la cybersécurité, en France ou à l'international.</p>
+        <p>Diplômé et <strong>disponible immédiatement pour un CDI</strong>, je recherche un poste dans les domaines de l'IoT, des réseaux et de la cybersécurité, en France ou à l'international.</p>
         <div class="lang-row">
           <div class="lang-item">
             <span class="lang-name">Français</span>
@@ -466,7 +501,7 @@
           <div class="stat-label">Pays d'études — Sénégal, Slovaquie, France</div>
         </div>
         <div class="stat-card">
-          <div class="stat-num" data-count="5">0</div>
+          <div class="stat-num" data-count="7">0</div>
           <div class="stat-label">Projets menés de bout en bout — académiques &amp; recherche</div>
         </div>
         <div class="stat-card">
@@ -474,7 +509,7 @@
           <div class="stat-label">Technologies &amp; outils maîtrisés</div>
         </div>
         <div class="stat-card">
-          <div class="stat-num">09/26</div>
+          <div class="stat-num" style="font-size:1.5rem;">Immédiate</div>
           <div class="stat-label">Disponibilité pour un CDI</div>
         </div>
       </div>
@@ -501,6 +536,7 @@
           <span class="tag">NetLogo</span>
           <span class="tag">Vissim</span>
           <span class="tag">IBM ILOG CPLEX</span>
+          <span class="tag">Tableau</span>
         </div>
       </div>
 
@@ -524,6 +560,8 @@
         <div class="tag-list">
           <span class="tag">TCP/IP</span>
           <span class="tag">Cisco Packet Tracer</span>
+          <span class="tag">OSPF</span>
+          <span class="tag">ACL &amp; NAT</span>
           <span class="tag">Cybersécurité</span>
           <span class="tag">Cryptographie</span>
           <span class="tag">Docker</span>
@@ -591,7 +629,7 @@
   <div class="wrap">
     <div class="section-tag reveal">Projets</div>
     <h2 class="section-title reveal">Projets académiques &amp; de recherche</h2>
-    <p class="section-intro reveal">Cinq projets, cinq problèmes concrets : apprentissage fédéré pour la détection d'anomalies IoT, circulation urbaine, capacité aéroportuaire, suivi d'activité physique et infrastructure réseau de campus.</p>
+    <p class="section-intro reveal">Sept projets, sept problèmes concrets : de mes premiers pas en domotique et développement web durant la prépa, jusqu'au portail d'apprentissage fédéré développé au LAMIH.</p>
 
     <div class="projects-grid">
 
@@ -646,13 +684,37 @@
       </div>
 
       <div class="project-card reveal">
-        <span class="project-num">05 — Réseaux</span>
-        <h3>Campuking — réseau inter-bâtiments</h3>
-        <p><strong>Problème :</strong> concevoir une architecture réseau capable de relier plusieurs bâtiments d'un campus de façon fiable et évolutive.</p>
-        <p><strong>Ma contribution :</strong> définition du schéma d'adressage IP complet et configuration du routage dynamique entre les routeurs inter-bâtiments.</p>
-        <p><strong>Résultat :</strong> une architecture réseau fonctionnelle, simulée et validée sous Cisco Packet Tracer, appliquant les principes TCP/IP à un cas de campus réel.</p>
+        <span class="project-num">05 — Réseaux &amp; sécurité</span>
+        <h3>CompuKings — architecture réseau multi-bâtiments pour une PME</h3>
+        <p><strong>Problème :</strong> concevoir de A à Z l'infrastructure réseau d'une entreprise fictive de développement web (« TechSprint ») répartie sur 2 bâtiments et 6 départements (IT, Finance, RH, Vendeurs, Développeurs, Administration), avec un parc de 4 serveurs partagés et des règles de communication strictes et différenciées entre services (ex : RH isolé mais connecté à Internet, Finance limité à l'Administration sans Internet, serveurs accessibles uniquement à IT et aux Développeurs).</p>
+        <p><strong>Ma contribution :</strong> conception de l'architecture LAN globale et détaillée par étage, définition d'un plan d'adressage IP en VLSM sur le bloc 172.16.48.0/20 pour dimensionner précisément chaque sous-réseau selon les effectifs réels (jusqu'à 1108 postes côté développeurs), segmentation en VLANs avec ACL pour faire respecter les règles métier, configuration du routage inter-VLAN, du routage statique puis du routage dynamique inter-bâtiments, et élaboration d'un plan de sécurisation complet (pare-feu, bonnes pratiques, sensibilisation) ainsi que du déploiement de points d'accès Wi-Fi.</p>
+        <p><strong>Résultat :</strong> une architecture réseau complète — dimensionnement, adressage, VLAN, routage, sécurité, coûts et plan d'évolutivité — simulée et validée de bout en bout sous Cisco Packet Tracer.</p>
         <div class="tag-list">
-          <span class="tag">Cisco Packet Tracer</span><span class="tag">TCP/IP</span><span class="tag">Routage dynamique</span>
+          <span class="tag">Cisco Packet Tracer</span><span class="tag">VLAN &amp; ACL</span><span class="tag">VLSM</span><span class="tag">Routage statique &amp; dynamique</span><span class="tag">Sécurité réseau</span><span class="tag">Wi-Fi d'entreprise</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <span class="project-num">06 — Domotique</span>
+        <h3>Automatisation d'une habitation</h3>
+        <span class="tl-org" style="margin-bottom:0;">Avril — Juin 2023 · Mariste Post-Bac, Mbaké, Sénégal</span>
+        <p><strong>Problème :</strong> comprendre et mettre en pratique les principes de la domotique — comment automatiser, contrôler et programmer les équipements d'une habitation.</p>
+        <p><strong>Ma contribution :</strong> étude et conception d'un système regroupant les techniques permettant d'automatiser une habitation, de la contrôler à distance et de la programmer.</p>
+        <p><strong>Résultat :</strong> une première mise en pratique concrète des principes de l'habitat intelligent, qui a directement nourri mon travail actuel sur l'infrastructure Smart Home du LAMIH.</p>
+        <div class="tag-list">
+          <span class="tag">Domotique</span><span class="tag">Automatisation résidentielle</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <span class="project-num">07 — Développement web</span>
+        <h3>Conception d'un site e-commerce</h3>
+        <span class="tl-org" style="margin-bottom:0;">Avril — Juin 2022 · Mariste Post-Bac, Mbaké, Sénégal</span>
+        <p><strong>Problème :</strong> consolider mes compétences en développement web à travers un projet concret plutôt que théorique.</p>
+        <p><strong>Ma contribution :</strong> conception et réalisation d'un site e-commerce de bout en bout, pour mettre en application et renforcer mon expérience personnelle dans différents domaines du développement.</p>
+        <p><strong>Résultat :</strong> une première expérience complète de développement web, posant les bases des compétences que j'utilise aujourd'hui en HTML/CSS, JavaScript et PHP.</p>
+        <div class="tag-list">
+          <span class="tag">Développement Web</span><span class="tag">HTML/CSS</span><span class="tag">JavaScript</span><span class="tag">PHP</span>
         </div>
       </div>
 
@@ -669,7 +731,7 @@
 
     <div class="formation-grid">
       <div class="formation-card reveal">
-        <span class="tl-meta">DEPUIS SEPT. 2024</span>
+        <span class="tl-meta">SEPT. 2024 — 2026 · DIPLÔME OBTENU</span>
         <h3>Master — Technologie de l'information pour la mobilité intelligente et durable</h3>
         <span class="tl-org">INSA Hauts-de-France · Valenciennes</span>
         <ul>
@@ -717,13 +779,51 @@
   </div>
 </section>
 
+<!-- ===================== CERTIFICATIONS ===================== -->
+<section class="section" id="certifications">
+  <div class="wrap">
+    <div class="section-tag reveal">Certifications</div>
+    <h2 class="section-title reveal">Certifications</h2>
+    <p class="section-intro reveal">Deux certifications Cisco Networking Academy qui viennent renforcer mes compétences en réseaux/sécurité et en data analytics.</p>
+
+    <div class="cert-grid">
+      <div class="cert-card reveal" data-accent="teal">
+        <div class="cert-issuer"><span class="badge-dot"></span>Cisco Networking Academy</div>
+        <h3>CCNA : Enterprise Networking, Security, and Automation</h3>
+        <span class="cert-date">Obtenu le 17 mai 2024</span>
+        <ul>
+          <li>Configuration d'OSPFv2 monozone en topologies point-à-point et multi-accès</li>
+          <li>Listes de contrôle d'accès (ACL) IPv4 standard et bonnes pratiques de sécurité réseau</li>
+          <li>Configuration du NAT pour la scalabilité des adresses IPv4</li>
+          <li>Accès distant sécurisé et scalabilité d'adressage pour les réseaux WAN</li>
+          <li>Supervision, optimisation et dépannage d'architectures réseau évolutives</li>
+          <li>QoS, virtualisation, SDN et automatisation réseau</li>
+        </ul>
+      </div>
+
+      <div class="cert-card reveal" data-accent="violet">
+        <div class="cert-issuer"><span class="badge-dot"></span>Cisco Networking Academy</div>
+        <h3>Data Analytics Essentials</h3>
+        <span class="cert-date">Obtenu le 12 octobre 2026</span>
+        <ul>
+          <li>Processus de data analytics et création de valeur à partir de la donnée</li>
+          <li>Caractéristiques, formats et modes d'acquisition des données</li>
+          <li>Transformation et préparation de données avec des outils d'analyse</li>
+          <li>Analyse statistique de base et techniques de préparation de données</li>
+          <li>Travaux pratiques avec Excel, SQL et Tableau</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== CONTACT ===================== -->
 <section class="section contact-section" id="contact">
   <div class="wrap">
     <div class="section-tag reveal">Contact</div>
     <div class="contact-box reveal">
       <h2>Construisons le prochain système, ensemble.</h2>
-      <p>Disponible pour un poste en CDI dès septembre 2026, en France ou à l'international, dans l'IoT, les réseaux ou la cybersécurité.</p>
+      <p>Diplômé et disponible immédiatement pour un poste en CDI, en France ou à l'international, dans l'IoT, les réseaux ou la cybersécurité.</p>
       <div class="contact-links">
         <a href="mailto:mourtalladiop92@gmail.com">✉ mourtalladiop92@gmail.com</a>
         <a href="tel:+33766072841">☎ 07 66 07 28 41</a>
@@ -735,7 +835,7 @@
 </section>
 
 <footer>
-  Mourtalla Diop — Futur ingénieur logiciel &amp; systèmes d'information · IoT · IA · Cybersécurité · Réseaux
+  Mourtalla Diop — Ingénieur logiciel &amp; systèmes d'information · IoT · IA · Cybersécurité · Réseaux
 </footer>
 
 <script>
